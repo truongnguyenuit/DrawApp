@@ -1,0 +1,24 @@
+import Head from 'next/head'
+import NavbarMenu from './NavbarMenu'
+import Script from 'next/script'
+
+const Layout = ({ children }) => (
+	<div>
+		<Head>
+			<meta charset='UTF-8' />
+			<meta http-equiv='X-UA-Compatible' content='IE=edge' />
+			<meta name='viewport' content='width=device-width, initial-scale=1.0' />
+			<title>Draw App</title>
+      <Script src="https://kit.fontawesome.com/cd2089affa.js" crossorigin="anonymous"></Script>
+		</Head>
+
+		<header>
+			<NavbarMenu />
+		</header>
+
+		<main>{children}</main>
+
+	</div>
+)
+
+export default Layout
