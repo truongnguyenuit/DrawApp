@@ -1,4 +1,5 @@
 import React from 'react'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { Row, Col } from "antd";
 import { useContext } from 'react';
@@ -12,17 +13,6 @@ const drawDetail = () => {
   const router = useRouter()
   const { drawState: { posts } } = useContext(DrawContext)
   const { authState: { authLoading, isAuthenticated } } = useContext(AuthContext)
-  if (authLoading) {
-    return (
-      <div>
-        loading...99%
-      </div>
-    )
-  }
-  if (!isAuthenticated) {
-    router.replace('/auth/login')
-    return null;
-  }
 
   return (
     <div className='flex justify-center bg-gray-200 h-[1000px]'>
@@ -34,12 +24,10 @@ const drawDetail = () => {
             </span>
           </Link>
           <span className="text-[40px] ">Your Draw</span>
-          <Link href={'/draw/input'} passHref>
-            <button className='bg-white font-bold w-[140px] h-[40px] text-black rounded-[8px] border-2 border-black text-base'>
-              <i className="fa-solid fa-file mr-3 "></i>
-              Create
-            </button>
-          </Link>
+          <button className='bg-white font-bold w-[140px] h-[40px] text-black rounded-[8px] border-2 border-black text-base'>
+            <i className="fa-solid fa-file mr-3 "></i>
+            Create
+          </button>
         </div>
 
         <div className="w-full">

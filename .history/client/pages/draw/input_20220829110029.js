@@ -1,12 +1,11 @@
 import { Row, Col, Input } from "antd";
-import React from "react";
 import Link from "next/link";
-
-import { useContext } from "react";
-import { useRouter } from "next/router";
 
 import { DrawContext } from "../../contexts/drawContext";
 import { AuthContext } from "../../contexts/authContext";
+
+import { useContext } from "react";
+import { useRouter } from "next/router";
 
 import { useFormik } from "formik"
 import * as Yup from "yup"
@@ -35,12 +34,13 @@ const input = () => {
       measurement: "",
     },
     validationSchema: Yup.object({
-      
+      symbol: Yup.string().required("Required").min(4, "Must be 4 character or more"),
+      shape: Yup.string().required("Required").min(4, "Must be 4 character or more"),
+      color: Yup.string().required("Required").min(4, "Must be 4 character or more"),
+      measurement: Yup.string().required("Required").min(4, "Must be 4 character or more"),
     }),
     onSubmit: async (values) => {
-      console.log("truong")
       try {
-        
         const response = await addDraw(values)
         console.log(response)
         alert(response.message)
@@ -62,9 +62,7 @@ const input = () => {
           </Link>
           <span className="text-[40px] ml-[120px] ">Create New Draw</span>
         </div>
-
         <form onSubmit={formik.handleSubmit}>
-
           <Row gutter={[20, 16]}>
             <div className="w-full h-full flex rounded-[5px] overflow-hidden">
               <Col span={12}>
@@ -138,7 +136,6 @@ const input = () => {
               </Col>
             </div>
           </Row>
-
           <div className="w-full flex justify-center mt-5">
             <button
               type="submit"
@@ -147,8 +144,10 @@ const input = () => {
               Draw
             </button>
           </div>
-
         </form>
+
+
+
       </div>
 
     </div>

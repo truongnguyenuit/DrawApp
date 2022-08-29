@@ -14,18 +14,18 @@ import * as Yup from "yup"
 const input = () => {
   const router = useRouter()
   const { addDraw } = useContext(DrawContext)
-  const { authState: { authLoading, isAuthenticated } } = useContext(AuthContext)
-  if (authLoading) {
-    return (
-      <div>
-        loading...99%
-      </div>
-    )
-  }
-  if (!isAuthenticated) {
-    router.replace('/auth/login')
-    return null
-  }
+  // const { authState: { authLoading, isAuthenticated } } = useContext(AuthContext)
+  // if (authLoading) {
+  //   return (
+  //     <div>
+  //       loading...99%
+  //     </div>
+  //   )
+  // }
+  // if (!isAuthenticated) {
+  //   router.replace('/auth/login')
+  //   return null
+  // }
 
   const formik = useFormik({
     initialValues: {

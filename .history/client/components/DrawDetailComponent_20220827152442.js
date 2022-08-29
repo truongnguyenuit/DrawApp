@@ -6,14 +6,14 @@ const DrawDetailComponent = ({ symbol, shape, color, measurement, _id }) => {
   for (let i = 0; i < measurement; i++) {
     measurementArray[i] = symbol
   }
+  let measurememtTriangle = measurement / 2 + 0.5
   let draw
-  console.log(color)
+
   if (shape === 'rectangle') {
     draw = (
-      <div className={`flex gap-3 flex-col font-bold text-[16px] text-[${color}]`}>
-      {/* [${color}] */}
-      
+      <div className={"flex gap-3 flex-col font-bold text-[16px] text-[${color}]"}>
         {measurementArray.map((item, index1) => {
+          console.log(measurememtTriangle)
           return (
 
             <div className='flex gap-3 ' key={index1}>

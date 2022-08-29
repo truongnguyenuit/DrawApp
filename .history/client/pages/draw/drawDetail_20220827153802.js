@@ -34,12 +34,11 @@ const drawDetail = () => {
             </span>
           </Link>
           <span className="text-[40px] ">Your Draw</span>
-          <Link href={'/draw/input'} passHref>
-            <button className='bg-white font-bold w-[140px] h-[40px] text-black rounded-[8px] border-2 border-black text-base'>
-              <i className="fa-solid fa-file mr-3 "></i>
-              Create
-            </button>
-          </Link>
+          <Link href={'/draw/input'} passHref></Link>
+          <button className='bg-white font-bold w-[140px] h-[40px] text-black rounded-[8px] border-2 border-black text-base'>
+            <i className="fa-solid fa-file mr-3 "></i>
+            Create
+          </button>
         </div>
 
         <div className="w-full">

@@ -14,18 +14,18 @@ import * as Yup from "yup"
 const input = () => {
   const router = useRouter()
   const { addDraw } = useContext(DrawContext)
-  const { authState: { authLoading, isAuthenticated } } = useContext(AuthContext)
-  if (authLoading) {
-    return (
-      <div>
-        loading...99%
-      </div>
-    )
-  }
-  if (!isAuthenticated) {
-    router.replace('/auth/login')
-    return null
-  }
+  // const { authState: { authLoading, isAuthenticated } } = useContext(AuthContext)
+  // if (authLoading) {
+  //   return (
+  //     <div>
+  //       loading...99%
+  //     </div>
+  //   )
+  // }
+  // if (!isAuthenticated) {
+  //   router.replace('/auth/login')
+  //   return null
+  // }
 
   const formik = useFormik({
     initialValues: {
@@ -35,12 +35,14 @@ const input = () => {
       measurement: "",
     },
     validationSchema: Yup.object({
-      
+      symbol: Yup.string().required("Required").min(4, "Must be 4 character or more"),
+      shape: Yup.string().required("Required").min(4, "Must be 4 character or more"),
+      color: Yup.string().required("Required").min(4, "Must be 4 character or more"),
+      measurement: Yup.string().required("Required").min(4, "Must be 4 character or more"),
     }),
     onSubmit: async (values) => {
-      console.log("truong")
       try {
-        
+        console.log("truong")
         const response = await addDraw(values)
         console.log(response)
         alert(response.message)
@@ -139,14 +141,19 @@ const input = () => {
             </div>
           </Row>
 
-          <div className="w-full flex justify-center mt-5">
-            <button
-              type="submit"
-              className="bg-white font-bold w-[200px] h-[45px] text-black rounded-[8px] border-2 border-black"
-            >
-              Draw
-            </button>
-          </div>
+          <Row>
+            <Col span={24} >
+              <div className="w-full flex justify-center">
+                <button
+                  type="submit"
+                  className="bg-white font-bold w-[200px] h-[45px] text-black rounded-[8px] border-2 border-black"
+                >
+                  Login
+                </button>
+              </div>
+            </Col>
+          </Row>
+
 
         </form>
       </div>

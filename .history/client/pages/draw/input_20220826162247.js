@@ -1,31 +1,18 @@
 import { Row, Col, Input } from "antd";
-import React from "react";
 import Link from "next/link";
 
-import { useContext } from "react";
-import { useRouter } from "next/router";
-
 import { DrawContext } from "../../contexts/drawContext";
+import { useContext } from "react";
 import { AuthContext } from "../../contexts/authContext";
+import { useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 import { useFormik } from "formik"
 import * as Yup from "yup"
 
 const input = () => {
-  const router = useRouter()
+
   const { addDraw } = useContext(DrawContext)
-  const { authState: { authLoading, isAuthenticated } } = useContext(AuthContext)
-  if (authLoading) {
-    return (
-      <div>
-        loading...99%
-      </div>
-    )
-  }
-  if (!isAuthenticated) {
-    router.replace('/auth/login')
-    return null
-  }
 
   const formik = useFormik({
     initialValues: {
@@ -35,12 +22,13 @@ const input = () => {
       measurement: "",
     },
     validationSchema: Yup.object({
-      
+      symbol: Yup.string().required("Required").min(4, "Must be 4 character or more"),
+      shape: Yup.string().required("Required").min(4, "Must be 4 character or more"),
+      color: Yup.string().required("Required").min(4, "Must be 4 character or more"),
+      measurement: Yup.string().required("Required").min(4, "Must be 4 character or more"),
     }),
     onSubmit: async (values) => {
-      console.log("truong")
       try {
-        
         const response = await addDraw(values)
         console.log(response)
         alert(response.message)
@@ -62,16 +50,14 @@ const input = () => {
           </Link>
           <span className="text-[40px] ml-[120px] ">Create New Draw</span>
         </div>
-
         <form onSubmit={formik.handleSubmit}>
-
           <Row gutter={[20, 16]}>
             <div className="w-full h-full flex rounded-[5px] overflow-hidden">
               <Col span={12}>
                 <span className='text-base font-bold '>Symbol</span>
                 <Input
                   type="text"
-                  placeholder="Enter your symbol"
+                  placeholder="Enter your email"
                   style={{
                     height: 45,
                     borderRadius: 4,
@@ -87,7 +73,7 @@ const input = () => {
                 <span className='text-base font-bold'>Color</span>
                 <Input
                   type="text"
-                  placeholder="Enter your color"
+                  placeholder="Enter your email"
                   style={{
                     height: 45,
                     borderRadius: 4,
@@ -106,7 +92,7 @@ const input = () => {
                 <span className='text-base font-bold'>Shape</span>
                 <Input
                   type="text"
-                  placeholder="Enter your shape"
+                  placeholder="Enter your email"
                   style={{
                     height: 45,
                     borderRadius: 4,
@@ -122,7 +108,7 @@ const input = () => {
                 <span className='text-base font-bold'>Measurement</span>
                 <Input
                   type="text"
-                  placeholder="Enter your measurement"
+                  placeholder="Enter your email"
                   style={{
                     height: 45,
                     borderRadius: 4,
@@ -138,7 +124,6 @@ const input = () => {
               </Col>
             </div>
           </Row>
-
           <div className="w-full flex justify-center mt-5">
             <button
               type="submit"
@@ -147,8 +132,10 @@ const input = () => {
               Draw
             </button>
           </div>
-
         </form>
+
+
+
       </div>
 
     </div>

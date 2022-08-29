@@ -7,12 +7,12 @@ const DrawDetailComponent = ({ symbol, shape, color, measurement, _id }) => {
     measurementArray[i] = symbol
   }
   let draw
-  console.log(color)
+
   if (shape === 'rectangle') {
     draw = (
       <div className={`flex gap-3 flex-col font-bold text-[16px] text-[${color}]`}>
       {/* [${color}] */}
-      
+      console.log(color)
         {measurementArray.map((item, index1) => {
           return (
 

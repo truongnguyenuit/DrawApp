@@ -35,12 +35,13 @@ const input = () => {
       measurement: "",
     },
     validationSchema: Yup.object({
-      
+      symbol: Yup.string().required("Required").min(4, "Must be 4 character or more"),
+      shape: Yup.string().required("Required").min(4, "Must be 4 character or more"),
+      color: Yup.string().required("Required").min(4, "Must be 4 character or more"),
+      measurement: Yup.string().required("Required").min(4, "Must be 4 character or more"),
     }),
     onSubmit: async (values) => {
-      console.log("truong")
       try {
-        
         const response = await addDraw(values)
         console.log(response)
         alert(response.message)
@@ -62,9 +63,7 @@ const input = () => {
           </Link>
           <span className="text-[40px] ml-[120px] ">Create New Draw</span>
         </div>
-
         <form onSubmit={formik.handleSubmit}>
-
           <Row gutter={[20, 16]}>
             <div className="w-full h-full flex rounded-[5px] overflow-hidden">
               <Col span={12}>
@@ -138,7 +137,6 @@ const input = () => {
               </Col>
             </div>
           </Row>
-
           <div className="w-full flex justify-center mt-5">
             <button
               type="submit"
@@ -147,8 +145,10 @@ const input = () => {
               Draw
             </button>
           </div>
-
         </form>
+
+
+
       </div>
 
     </div>

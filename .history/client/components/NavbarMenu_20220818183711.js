@@ -14,6 +14,14 @@ const NavigateRouter = [
   {
     path: '/draw/list',
     name: "List"
+  },
+  {
+    path: '',
+    name: "About"
+  },
+  {
+    path: '',
+    name: "Logout",
   }
 ];
 
